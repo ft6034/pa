@@ -8,4 +8,3 @@
 支援線上即視的作業檔案格式：sb(Scratch)、jpg、png
 
 預設管理者從 login_ad.php 登入，帳號/密碼：admin/12345678
-
