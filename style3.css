@@ -1,0 +1,108 @@
+body {
+  background-image: url(back.jpg);
+  background-repeat: no-repeat;
+}
+
+img {
+	border: 0px;
+}
+
+a, a:link, a:visited {
+  color:#904E0E;
+  text-decoration: none
+}
+
+a:hover { 
+  color:#904E0E;
+  text-decoration: none;
+}
+
+hr {
+   text-align: center;
+   width: 900;
+}
+
+.outtable {
+  margin-top: 40px;
+  margin-left: 45px;
+  width: 910px;
+  height: 680px;
+}
+
+.menu {
+	height: 74;
+	text-align: right;
+  font-size: 22px;
+  color: #904E0E;
+  font-family: "標楷體";
+  font-weight: bold;
+}
+
+.title {
+	width: 350;
+	height: 40;
+	text-align: left;
+	vertical-align: text-bottom;
+  font-family: "標楷體";
+  font-size: 36px;
+  font-weight: bold;
+  color: #999900;
+}
+
+.header {
+	height: 40;
+	text-align: right;
+  font-size: 40px;
+  font-weight: bold;
+  color: #339966;
+}
+
+.header2 {
+	height: 120;
+	text-align: right;
+  font-size: 80px;
+  font-weight: bold;
+  color: #339966;
+}
+
+.function {
+	width: 614;
+	height: 40;
+  text-align: right;
+  vertical-align: text-bottom;
+  font-size: 18px;
+  color: #904E0E;
+  font-family: "標楷體";
+  font-weight: bold;
+}
+
+.myMask{
+width: 800px;
+height: 500px;
+overflow: auto;
+}
+.myFrame{
+width: 800px;
+height: 500px;
+}
+
+input.groovybutton-back
+{
+   font-size:11px;
+   font-family:Tahoma,sans-serif;
+   width:102px;
+   background-color:#CCDDCC;
+   border-top-style:solid;
+   border-top-color:#99AA99;
+   border-top-width:2px;
+   border-bottom-style:solid;
+   border-bottom-color:#99AA99;
+   border-bottom-width:2px;
+   border-left-style:solid;
+   border-left-color:#BBCCBB;
+   border-left-width:5px;
+   border-right-style:solid;
+   border-right-color:#BBCCBB;
+   border-right-width:5px;
+}
+
