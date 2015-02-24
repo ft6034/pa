@@ -2,6 +2,7 @@
 session_start();
 
 //僅限校內登入
+/*
 if(substr ($_SERVER['REMOTE_ADDR'], 0, 7)!="172.17."){
 	echo "<script language='javascript'>";
 //	echo "  alert('僅開放校內登入!');";
@@ -9,7 +10,7 @@ if(substr ($_SERVER['REMOTE_ADDR'], 0, 7)!="172.17."){
 	echo 'document.location.href="http://210.243.29.81/scratch";';
 	echo "</script>";
 }
-
+*/
 $s_id ="";
 if(isset($_COOKIE["s_id"])) {
 	$s_id = $_COOKIE["s_id"];
