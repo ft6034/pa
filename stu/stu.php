@@ -247,6 +247,12 @@ if(isset($_SESSION["t_id"])){
 				elseif (substr($row_m2["m_spath"],-3) == "xls"){
 					echo "<a href=\"../".$row_m2["m_spath"]."\" >";
 				}
+				elseif (substr($row_m2["m_spath"],-3) == "xls"){
+					echo "<a href=\"../".$row_m2["m_spath"]."\" >";
+				}
+				elseif (substr($row_m2["m_spath"],-4) == ".mp4"||"webm"||".ogg"){
+					echo "<a href=\"../video.php?mid=".$row_m["m_id"]."\" rel=\"shadowbox\">";
+				}
 				else {
 					echo "<a href=\"../".$row_m2["m_spath"]."\" rel=\"shadowbox\">";
 				}
