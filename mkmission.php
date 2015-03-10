@@ -27,56 +27,32 @@ else{
 
 //有任務名稱，就建立任務
 if(isset($_POST["m_name"])){
-		require_once("./Connections/pasql.php");
-		//開啟資料庫
-		$db_selected = mysql_select_db($database_pa, $pa);
-		if(!$db_selected)die("無法開啟資料庫");	
+	require_once("./Connections/pasql.php");
+	//開啟資料庫
+	$db_selected = mysql_select_db($database_pa, $pa);
+	if(!$db_selected)die("無法開啟資料庫");	
 
-	if($_FILES["up_work"]!="")	{
-          //$src_file = $_FILES["up_work"]["tmp_name"];
-		//$desc = "班級座號-日期-時間-任務id";
-		$desc = $_SESSION["t_id"]."-".$now_date."-".$now_time; //檔名
-		$src_ext = strtolower(strrchr($_FILES["up_work"]["name"], ".")); //副檔名
-		  
-		  //加入判斷src_ext是哪一種類型
-		  
-        $desc_file_name = $desc.$src_ext;
-          //$thumbnail_desc_file_name = "./works/$desc_file_name";
-          //resize_photo($src_file, $src_ext, $thumbnail_desc_file_name, 200);
-		if(move_uploaded_file($_FILES["up_work"]["tmp_name"], "./samples/".$desc_file_name)) {
 
+	//$src_file = $_FILES["up_work"]["tmp_name"];
+	//$desc = "班級座號-日期-時間-任務id";
+	$desc = $_SESSION["t_id"]."-".$now_date."-".$now_time; //檔名
+	$src_ext = strtolower(strrchr($_FILES["up_work"]["name"], ".")); //副檔名
+	  
+	//加入判斷src_ext是哪一種類型
+	$desc_file_name = $desc.$src_ext;
+	//$thumbnail_desc_file_name = "./works/$desc_file_name";
+	//resize_photo($src_file, $src_ext, $thumbnail_desc_file_name, 200);
+	if(move_uploaded_file($_FILES["up_work"]["tmp_name"], "./samples/".$desc_file_name)) {
 		/*
 		echo "<script language='javascript'>";
 		echo "  alert('範例上傳成功!');";
 		echo "</script>";
 		*/
-					
-        } else {
-			echo "<script language='javascript'>";
-			echo "  alert('範例上傳失敗2!');";
-			echo "  history.back();";
-			echo "</script>";
-        }
-    }
-	else{
-		echo "<script language='javascript'>";
-		echo "  alert('沒有範例檔案!');";
-		echo "  history.back();";
-		echo "</script>";
-	}
-
 		//建立mission紀錄
 		$sql = "INSERT INTO mission(m_name, m_desc, m_grade, syear, t_id, m_spath, m_order,m_date,m_proportion)";
 		$sql .= " VALUES('".$_POST["m_name"]."', '".$_POST["m_desc"]."','".$_POST["m_grade"]."', '".$_POST["syear"]."','".$_SESSION["t_id"]."','./samples/".$desc_file_name."','".$_POST["m_order"]."','".$now_date." ".$now_time2."','".$_POST["m_proportion"]."')";
-
 		$result = mysql_query($sql,$pa);
-		if(!$result){
-			echo "<script language='javascript'>";
-			echo "  alert('執行SQL命令失敗1!');";
-			echo "  history.back();";
-			echo "</script>";
-		}
-		else{			
+		if($result){
 			//echo $sql;
 			$sql = "SELECT m_id FROM mission WHERE m_name='".$_POST["m_name"]."' AND syear='".$_POST["syear"]."'";
 			$result = mysql_query($sql,$pa);
@@ -84,9 +60,23 @@ if(isset($_POST["m_name"])){
 			$row = mysql_fetch_assoc($result);
 			echo "<script language='javascript'>";
 			echo "  alert('成功建立任務!');";
-			echo "document.location.href='assign.php?newm=y&mid=".$row["m_id"].";";
+			echo "	document.location.href='assign.php?newm=y&mid=".$row["m_id"]."';";
 			echo "</script>";
 		}
+		else{
+			echo "<script language='javascript'>";
+			echo "  alert('執行SQL命令失敗1!');";
+			echo "  history.back();";
+			echo "</script>";
+		}
+	}
+	else {
+		echo "<script language='javascript'>";
+		echo "  alert('範例上傳失敗!');";
+		echo "  history.back();";
+		echo "</script>";
+	}
+
 }
 ?>
 <html>
