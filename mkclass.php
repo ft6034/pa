@@ -134,7 +134,7 @@ if(isset($_POST["c_class"])){
     <form action="mkclass.php" method="post" enctype="multipart/form-data">
         <table width="0">
 			<tr>
-				<td>新班級名稱：</td><td><input type="text" name="c_class"> 第一碼為年級 ( 6為六年級, 5為五年級,..., t為測試班)</td>
+				<td>新班級名稱：</td><td><input type="text" name="c_class" autofocus> 第一碼為年級 ( 6為六年級, 5為五年級,..., t為測試班)</td>
 			</tr>
 			<tr>
 				<td>學年學期：</td><td><input type="text" name="syear" value="<?php echo $syear;?>"></td>
