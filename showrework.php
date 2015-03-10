@@ -297,7 +297,8 @@ function changeText(objElement) {
 	if(mysql_num_rows($result)!=0){
 		echo '<table>';
 		echo '<tr><td width="800" align="center"><p>';
-					
+		
+		//判斷作品檔案格式，展示作品
 		if (substr($row["rew_desc"],-3) == ".sb"){
 			echo '
 					<!-- Scratch project START-->
@@ -313,7 +314,14 @@ function changeText(objElement) {
 		else if (substr($row["rew_desc"],-3) == "jpg"||substr($row["rew_desc"],-3) == "png"||substr($row["rew_desc"],-3) == "bmp"||substr($row["rew_desc"],-3) == "gif"){
 			echo "<a href=./stu".trim($row["rew_desc"],".")." rel=\"shadowbox\" target=\"_top\"><img src=./stu".trim($row["rew_desc"],".")." height=\"387\"></a>";
 		}
-		
+		elseif (substr($row["w_desc"],-4) == ".mp4"||"webm"||".ogg"){
+			echo '
+				<video width="600" controls>
+				<source src="'.$row["w_desc"].'" type="video/'.str_replace('.','',strrchr($row["w_desc"], ".")).'">
+				Your browser does not support the video tag.
+				</video>	
+			';
+		}
 		else {
 			echo "<p align=\"center\"><a href=./stu".trim($row["rew_desc"],".")." target='_blank'> [ <font color='green'>下載作品▼</font> ] </a></p>";
 		}

@@ -135,7 +135,7 @@ function goDim(FRM,BTN)
     	<td>
 
 <?php
-			//判斷檔案類型
+			//判斷檔案類型，展示作品
 			if (substr($w_desc,-3) == ".sb"){
 				echo '
 					<!-- Scratch project START-->
@@ -152,6 +152,14 @@ function goDim(FRM,BTN)
 			else if (substr($w_desc,-3) == "jpg"||substr($w_desc,-3) == "png"||substr($w_desc,-3) == "bmp"||substr($w_desc,-3) == "gif"){
 				echo "<a href=".$w_desc." rel=\"shadowbox\" target=\"_top\"><img src=".$w_desc." height=\"387\"></a>";
 				echo "<p align=\"center\"><a href=".$w_desc." target='_blank'> [ <font color='green'>下載作品▼</font> ] </a></p>";
+			}
+			elseif (substr($w_desc[$wnum],-4) == ".mp4"||"webm"||".ogg"){
+				echo '
+					<video width="600" controls>
+					<source src="'.$w_desc[$wnum].'" type="video/'.str_replace('.','',strrchr($w_desc[$wnum], ".")).'">
+					Your browser does not support the video tag.
+					</video>	
+				';
 			}
 			else {
 				echo "<p align=\"center\"><a href=".$w_desc." target='_blank'> [ <font color='green'>下載作品▼</font> ] </a></p>";

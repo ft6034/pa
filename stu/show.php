@@ -244,7 +244,7 @@ function goDim0(FRM0,BTN0)
     	<td>
 
 <?php
-			//判斷檔案類型
+			//判斷檔案類型，展示作品
 			if (substr($w_desc[$wnum],-3) == ".sb"){
 				echo '
 					<!-- Scratch project START-->
@@ -258,9 +258,17 @@ function goDim0(FRM0,BTN0)
 				';
 				echo "<p align=\"center\"><a href=".$w_desc[$wnum]." target='_blank'> [ <font color='green'>下載作品▼</font> ] </a></p>";
 			}
-			else if (substr($w_desc[$wnum],-3) == "jpg"||substr($w_desc[$wnum],-3) == "png"||substr($w_desc[$wnum],-3) == "bmp"||substr($w_desc[$wnum],-3) == "gif"){
+			elseif (substr($w_desc[$wnum],-3) == "jpg"||substr($w_desc[$wnum],-3) == "png"||substr($w_desc[$wnum],-3) == "bmp"||substr($w_desc[$wnum],-3) == "gif"){
 				echo "<a href=".$w_desc[$wnum]." rel=\"shadowbox\" target=\"_top\"><img src=".$w_desc[$wnum]." height=\"387\"></a>";
 				echo "<p align=\"center\"><a href=".$w_desc[$wnum]." target='_blank'> [ <font color='green'>下載作品▼</font> ] </a></p>";
+			}
+			elseif (substr($w_desc[$wnum],-4) == ".mp4"||"webm"||".ogg"){
+				echo '
+					<video width="600" controls>
+					<source src="'.$w_desc[$wnum].'" type="video/'.str_replace('.','',strrchr($w_desc[$wnum], ".")).'">
+					Your browser does not support the video tag.
+					</video>	
+				';
 			}
 			else {
 				echo "<p align=\"center\"><a href=".$w_desc[$wnum]." target='_blank'> [ <font color='green'>下載作品▼</font> ] </a></p>";

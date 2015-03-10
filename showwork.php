@@ -300,6 +300,7 @@ function changeText(objElement) {
 		echo '<table>';
 		echo '<tr><td width="800" align="center"><p>';
 		
+		//判斷作品檔案格式，展示作品
 		if (substr($row["w_desc"],-3) == ".sb"){
 			echo '
 					<!-- Scratch project START-->
@@ -312,10 +313,17 @@ function changeText(objElement) {
 					<!-- Scratch project END-->
 				'; //trim 可刪除指定字元
 		}
-		else if (substr($row["w_desc"],-3) == "jpg"||substr($row["w_desc"],-3) == "png"||substr($row["w_desc"],-3) == "bmp"||substr($row["w_desc"],-3) == "gif"){
+		elseif (substr($row["w_desc"],-3) == "jpg"||substr($row["w_desc"],-3) == "png"||substr($row["w_desc"],-3) == "bmp"||substr($row["w_desc"],-3) == "gif"){
 			echo "<a href=./stu".trim($row["w_desc"],".")." rel=\"shadowbox\" target=\"_top\"><img src=./stu".trim($row["w_desc"],".")." height=\"387\"></a>";
 		}
-		
+		elseif (substr($row["w_desc"],-4) == ".mp4"||"webm"||".ogg"){
+			echo '
+				<video width="600" controls>
+				<source src="'.$row["w_desc"].'" type="video/'.str_replace('.','',strrchr($row["w_desc"], ".")).'">
+				Your browser does not support the video tag.
+				</video>	
+			';
+		}
 		else {
 			echo "<p align=\"center\"><a href=./stu".trim($row["w_desc"],".")." target='_blank'> [ <font color='green'>下載作品▼</font> ] </a></p>";
 		}

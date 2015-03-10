@@ -141,7 +141,7 @@ function goDim3(FRM3,BTN3)
 	
 	if($status=="view"){
 
-			//判斷檔案類型
+			//判斷檔案類型，展示作品
 			if (substr($row["w_desc"],-3) == ".sb"){
 				echo '
 					<!-- Scratch project START-->
@@ -155,9 +155,17 @@ function goDim3(FRM3,BTN3)
 				';
 				echo "<p align=\"center\"><a href=".$row["w_desc"]."> [ <font color='green'>下載作品▼</font> ] </a></p>";
 			}
-			else if (substr($row["w_desc"],-3) == "jpg"||substr($row["w_desc"],-3) == "png"||substr($row["w_desc"],-3) == "bmp"||substr($row["w_desc"],-3) == "gif"){
+			elseif (substr($row["w_desc"],-3) == "jpg"||substr($row["w_desc"],-3) == "png"||substr($row["w_desc"],-3) == "bmp"||substr($row["w_desc"],-3) == "gif"){
 				echo "<a href=".$row["w_desc"]." rel=\"shadowbox\" target=\"_top\"><img src=".$row["w_desc"]." height=\"387\"></a>";
 				echo "<p align=\"center\"><a href=".$row["w_desc"]."> [ <font color='green'>下載作品▼</font> ] </a></p>";
+			}
+			elseif (substr($w_desc[$wnum],-4) == ".mp4"||"webm"||".ogg"){
+				echo '
+					<video width="600" controls>
+					<source src="'.$w_desc[$wnum].'" type="video/'.str_replace('.','',strrchr($w_desc[$wnum], ".")).'">
+					Your browser does not support the video tag.
+					</video>	
+				';
 			}
 			else {
 				echo "<p align=\"center\"><a href=".$row["w_desc"]."> [ <font color='green'>下載作品▼</font> ] </a></p>";
