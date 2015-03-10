@@ -17,32 +17,18 @@ if(!$result)die("執行SQL命令失敗1");
 $row = mysql_fetch_assoc($result);
 $syear = $row["syear"];
 
-//1.如果有GET m_id就顯示該任務的資料
-//2.如果有POST m_id就更新任務資料
-//3.如果都沒有，就顯示任務清單
-//4.刪除任務
+//如果有GET m_id就顯示該任務的資料
+//如果有POST m_id就更新任務資料
+//如果都沒有，就顯示任務清單
 $status = 0;
 if(isset($_GET["mid"])){
-	if(isset($_GET["del"])){
-		$status = '4';
-		$sql = "DELETE FROM mission WHERE m_id='".$_GET["mid"]."'";
-		$result = mysql_query($sql,$pa);
-		if(!$result)die("執行SQL命令失敗3");
-		else{			
-			echo "<script language='javascript'>";
-			echo "  alert('任務刪除成功！');";
-			echo "	document.location.href='mdmission.php';";
-			echo "</script>";
-		}
-	}
-	else{
-		$status = '1';
-		//取任務資料
-		$sql = "SELECT * FROM mission WHERE syear='".$syear."' AND m_id='".$_GET["mid"]."' AND t_id='".$_SESSION["t_id"]."' ORDER BY m_order";
-		$result = mysql_query($sql,$pa);
-		if(!$result)die("執行SQL命令失敗2");
-		$num_rows = mysql_num_rows($result);
-		$row = mysql_fetch_assoc($result);
+	$status = '1';
+	//取任務資料
+	$sql = "SELECT * FROM mission WHERE syear='".$syear."' AND m_id='".$_GET["mid"]."' AND t_id='".$_SESSION["t_id"]."' ORDER BY m_order";
+	$result = mysql_query($sql,$pa);
+	if(!$result)die("執行SQL命令失敗2");
+	$num_rows = mysql_num_rows($result);
+	$row = mysql_fetch_assoc($result);
 		$m_id = $row["m_id"];
 		$m_name = $row["m_name"];
 		$m_desc = $row["m_desc"];
@@ -54,21 +40,21 @@ if(isset($_GET["mid"])){
 		$m_grade = $row["m_grade"];
 		$m_order = $row["m_order"];
 		$m_proportion  = $row["m_proportion"];
-	}
+
 }
 
 else if(isset($_POST["m_id"])){
 	$status = '2';
-	$sql = "UPDATE mission SET m_name='".$_POST["m_name"]."', m_desc='".$_POST["m_desc"]."', m_grade='".$_POST["m_grade"]."', syear='".$_POST["syear"]."', m_order='".$_POST["m_order"]."', m_proportion='".$_POST["m_proportion"]."' WHERE m_id='".$_POST["m_id"]."'";		
-	$result = mysql_query($sql,$pa);
-	if(!$result)die("執行SQL命令失敗3");
-	else{			
-		//echo $sql;
-		echo "<script language='javascript'>";
-		//echo "  alert('任務修改成功！');";
-		echo "	document.location.href='mdmission.php';";
-		echo "</script>";
-	}
+		$sql = "UPDATE mission SET m_name='".$_POST["m_name"]."', m_desc='".$_POST["m_desc"]."', m_grade='".$_POST["m_grade"]."', syear='".$_POST["syear"]."', m_order='".$_POST["m_order"]."', m_proportion='".$_POST["m_proportion"]."' WHERE m_id='".$_POST["m_id"]."'";		
+		$result = mysql_query($sql,$pa);
+		if(!$result)die("執行SQL命令失敗3");
+		else{			
+			//echo $sql;
+			echo "<script language='javascript'>";
+			//echo "  alert('任務修改成功！');";
+			echo "document.location.href='mdmission.php';";
+			echo "</script>";
+		}
 }
 else{
 	$status = '3';
@@ -209,7 +195,6 @@ function ValidateFloat2(e, pnumber)
 			echo "<td class='td-solid'>".$row["m_grade"]."</td>";
 			echo "<td class='td-solid'>".$row["syear"]."</td>";
 			echo "<td class='td-solid'><input type=\"button\" value=\"修改\" onClick=\"self.location='mdmission.php?mid=".$row["m_id"]."'\"></td>";
-			echo "<td class='td-solid'><input type=\"button\" value=\"刪除\" onClick=\"self.location='mdmission.php?mid=".$row["m_id"]."&del=go'\"></td>";
 			echo "</tr>";
 		}
 	}
