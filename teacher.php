@@ -124,7 +124,7 @@ if(isset($_SESSION["admin_id"])){
 			</tr>
 			<tr>
 				<td>
-					<input type="button" value="互評項目" onClick="self.location='termset.php'">
+					<input type="button" value="評分項目" onClick="self.location='termset.php'">
 					<input type="button" value="評分輔語" onClick="self.location='scalenset.php'">
 					<input type="button" value="回饋輔語" onClick="self.location='helpset.php'">
 					<input type="button" value="禁用語詞" onClick="self.location='tabooset.php'">
