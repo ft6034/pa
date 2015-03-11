@@ -175,7 +175,7 @@ if(isset($_SESSION["t_id"])){
 		<td colspan="2" class="header">網路同儕互評系統</td>
 	</tr>
 	<tr>
-		<td class="title"colspan="2"><font size="4">
+		<td class="title"><font size="4">
 <?php 
 	echo $row["c_class"]." ".$row["s_name"]." ";
 			//取未讀訊息
@@ -187,9 +187,30 @@ if(isset($_SESSION["t_id"])){
 ?>
 		<font size="2">[<a href="smessage.php"> 訊息<?php echo $m_nums;?> </a>] [<a href="../index.php"> 首頁 </a>] [<a href="../../scratch/" target="_blank">全班作品一覽</a>] [<a href="delog.php" rel="shadowbox"> 回收桶 </a>] [<a href="chpass.php" rel="shadowbox"> 修改密碼 </a>] [<a href="../logout.php"> 登出 </a>]</font>
 		</td>
-
-
-
+		<td width="200" align="right">
+<?php
+			//如果是教師模擬學生，就出現年級選單
+			if(substr($row["c_class"],0,2)=="t_"){
+				//取m_grade（指定顯示的年級）
+				$sql_grade = "SELECT Distinct m_grade FROM mission WHERE t_id='".$_SESSION["t_id"]."' AND syear='".$syear."' ORDER BY m_grade DESC";
+				$result_grade = mysql_query($sql_grade,$pa);
+				if(!$result_grade)die("執行SQL命令失敗");
+				while($row_grade = mysql_fetch_assoc($result_grade)){
+					if(isset($_GET["grade"])&&$_GET["grade"]==$row_grade["m_grade"]){
+						echo "<b>";
+					}
+					echo "<a href='stu.php?grade=".$row_grade["m_grade"]."'>".$row_grade["m_grade"]."年級</a>　";
+					if(isset($_GET["grade"])&&$_GET["grade"]==$row_grade["m_grade"]){
+						echo "</b>";
+					}
+				}
+			}
+			else{
+				
+			}
+			
+?>
+		</td>
 	</tr>
 	<tr>
 		<td height="4" colspan="2"><hr></td>
@@ -215,18 +236,15 @@ if(isset($_SESSION["t_id"])){
         <table width="0" cellpadding="5" class="outtable2">
 			<tr><th height="20" width="110">任務名稱</th><th>任務說明</th><th>作品進度</th><th width="80">互評與自評</th></tr>
 <?php		
-		//檢查是否所有任務已經登記於班級資料表上
-		
-			//有缺，補登任務id
-			
-			//沒缺，往下一步
-		
-		//取得任務清單
-		//在班級管理，建立班級
-		//在任務管理，將m_ids加入class之中
-
+	//如果是教師模擬學生，且指定年級時，依年級單獨顯示
+	if(isset($_GET["grade"])){
+		$sql_m = "SELECT m2c.m_id,mission.m_order FROM m2c,mission WHERE m2c.c_id='".$row["c_id"]."' AND mission.m_id=m2c.m_id AND mission.syear=".$syear." AND mission.m_grade=".$_GET["grade"]." ORDER BY mission.m_order DESC";
+	}
+	else{
+		$sql_m = "SELECT m2c.m_id,mission.m_order FROM m2c,mission WHERE m2c.c_id='".$row["c_id"]."' AND mission.m_id=m2c.m_id AND mission.syear=".$syear." ORDER BY mission.m_order DESC";
+	}
 	//以c_id，從m2c取得 m_id
-	$sql_m = "SELECT m2c.m_id,mission.m_order FROM m2c,mission WHERE m2c.c_id='".$row["c_id"]."' AND mission.m_id=m2c.m_id AND mission.syear=".$syear." ORDER BY mission.m_order DESC";
+	
 	$result_m = mysql_query($sql_m,$pa);
 	if(!$result_m)die("執行SQL命令失敗_m");
 	while($row_m = mysql_fetch_assoc($result_m)){
