@@ -153,10 +153,10 @@ function goDim(FRM,BTN)
 				echo "<a href=".$w_desc." rel=\"shadowbox\" target=\"_top\"><img src=".$w_desc." height=\"387\"></a>";
 				echo "<p align=\"center\"><a href=".$w_desc." target='_blank'> [ <font color='green'>下載作品▼</font> ] </a></p>";
 			}
-			elseif (substr($w_desc[$wnum],-4) == ".mp4"||"webm"||".ogg"){
+			elseif (substr($w_desc,-4) == ".mp4"||substr($w_desc,-4) == "webm"||substr($w_desc,-4) == ".ogg"){
 				echo '
 					<video width="600" controls>
-					<source src="'.$w_desc[$wnum].'" type="video/'.str_replace('.','',strrchr($w_desc[$wnum], ".")).'">
+					<source src="'.$w_desc.'" type="video/'.str_replace('.','',strrchr($w_desc, ".")).'">
 					Your browser does not support the video tag.
 					</video>	
 				';

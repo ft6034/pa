@@ -314,10 +314,10 @@ function changeText(objElement) {
 		else if (substr($row["rew_desc"],-3) == "jpg"||substr($row["rew_desc"],-3) == "png"||substr($row["rew_desc"],-3) == "bmp"||substr($row["rew_desc"],-3) == "gif"){
 			echo "<a href=./stu".trim($row["rew_desc"],".")." rel=\"shadowbox\" target=\"_top\"><img src=./stu".trim($row["rew_desc"],".")." height=\"387\"></a>";
 		}
-		elseif (substr($row["w_desc"],-4) == ".mp4"||"webm"||".ogg"){
+		elseif (substr($row["rew_desc"],-4) == ".mp4"||substr($row["rew_desc"],-4) == "webm"||substr($row["rew_desc"],-4) == ".ogg"){
 			echo '
 				<video width="600" controls>
-				<source src="'.$row["w_desc"].'" type="video/'.str_replace('.','',strrchr($row["w_desc"], ".")).'">
+				<source src="'.$row["rew_desc"].'" type="video/'.str_replace('.','',strrchr($row["rew_desc"], ".")).'">
 				Your browser does not support the video tag.
 				</video>	
 			';

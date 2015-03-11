@@ -316,7 +316,7 @@ function changeText(objElement) {
 		elseif (substr($row["w_desc"],-3) == "jpg"||substr($row["w_desc"],-3) == "png"||substr($row["w_desc"],-3) == "bmp"||substr($row["w_desc"],-3) == "gif"){
 			echo "<a href=./stu".trim($row["w_desc"],".")." rel=\"shadowbox\" target=\"_top\"><img src=./stu".trim($row["w_desc"],".")." height=\"387\"></a>";
 		}
-		elseif (substr($row["w_desc"],-4) == ".mp4"||"webm"||".ogg"){
+		elseif (substr($row["w_desc"],-4) == ".mp4"||substr($row["w_desc"],-4) == "webm"||substr($row["w_desc"],-4) == ".ogg"){
 			echo '
 				<video width="600" controls>
 				<source src="'.$row["w_desc"].'" type="video/'.str_replace('.','',strrchr($row["w_desc"], ".")).'">

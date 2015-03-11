@@ -159,10 +159,10 @@ function goDim3(FRM3,BTN3)
 				echo "<a href=".$row["w_desc"]." rel=\"shadowbox\" target=\"_top\"><img src=".$row["w_desc"]." height=\"387\"></a>";
 				echo "<p align=\"center\"><a href=".$row["w_desc"]."> [ <font color='green'>下載作品▼</font> ] </a></p>";
 			}
-			elseif (substr($w_desc[$wnum],-4) == ".mp4"||"webm"||".ogg"){
+			elseif (substr($row["w_desc"],-4) == ".mp4"||substr($row["w_desc"],-4) == "webm"||substr($row["w_desc"],-4) == ".ogg"){
 				echo '
 					<video width="600" controls>
-					<source src="'.$w_desc[$wnum].'" type="video/'.str_replace('.','',strrchr($w_desc[$wnum], ".")).'">
+					<source src="'.$row["w_desc"].'" type="video/'.str_replace('.','',strrchr($row["w_desc"], ".")).'">
 					Your browser does not support the video tag.
 					</video>	
 				';
