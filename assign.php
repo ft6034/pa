@@ -77,8 +77,8 @@ else if(isset($_POST["m_id"])){
 			foreach($_POST['add_c'] as $key => $value) {
 				$ic_id = $value;
 				//列印出被選取的c_id，新增m2c紀錄
-				$sql = "INSERT INTO m2c(c_id, m_id)";
-				$sql .= " VALUES('".$ic_id."', '".$_POST["m_id"]."')";
+				$sql = "INSERT INTO m2c(c_id, m_id, m2c_status)";
+				$sql .= " VALUES('".$ic_id."', '".$_POST["m_id"]."','1')";
 				$result = mysql_query($sql,$pa);
 				if(!$result)die("執行SQL命令失敗8");
 				//以c_id從stu取出學生
