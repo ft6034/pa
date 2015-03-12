@@ -117,7 +117,7 @@ if($p_query=="" && $g_query!="2"){
 				<th>依學號搜尋</th>
 			</tr>
 			<tr>
-				<td>請輸入學號：</td><td><input type="text" name="sid" value="">　<font size="2">測試帳號為 t_'.$_SESSION["t_id"].'_01, 02, 03...</td>
+				<td>請輸入學號：</td><td><input type="text" name="sid" value="" autofocus>　<font size="2">測試帳號為 t_'.$_SESSION["t_id"].'_01, 02, 03...</td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
@@ -222,7 +222,8 @@ elseif($g_query=="2"){
 			</tr>
         </table>
 		<input type="hidden" name="t_check" value="1">
-		<input type="submit" value="確定">';
+		<input type="submit" value="確定">
+		<input type="button" value="取消" onClick="self.location=\'mdstu.php\'">';
 }
 ?>
         <hr>
