@@ -250,7 +250,7 @@ if(isset($_SESSION["t_id"])){
 	while($row_m = mysql_fetch_assoc($result_m)){
 	
 		//以m_id，從mission取得 m_name, m_desc
-		$sql_m2 = "SELECT m_name, m_desc, m_status,m_spath FROM mission WHERE m_id = '".$row_m["m_id"]."'";
+		$sql_m2 = "SELECT m_name, m_desc, m_wtype,m_spath FROM mission WHERE m_id = '".$row_m["m_id"]."'";
 		$result_m2 = mysql_query($sql_m2,$pa);
 		if(!$result_m2)die("執行SQL命令失敗_m2");
 		if(mysql_num_rows($result_m2)!=0) {
