@@ -2,7 +2,6 @@
 session_start();
 
 //僅限校內登入
-/*
 if(substr ($_SERVER['REMOTE_ADDR'], 0, 7)!="172.17."){
 	echo "<script language='javascript'>";
 //	echo "  alert('僅開放校內登入!');";
@@ -10,7 +9,7 @@ if(substr ($_SERVER['REMOTE_ADDR'], 0, 7)!="172.17."){
 	echo 'document.location.href="http://210.243.29.81/scratch";';
 	echo "</script>";
 }
-*/
+
 $s_id ="";
 if(isset($_COOKIE["s_id"])) {
 	$s_id = $_COOKIE["s_id"];
@@ -146,7 +145,7 @@ else{
 	echo "</th>";
 	echo "</tr>";
 	echo "<tr align='center' style='font-size:10; color:#BE0200; background-color:#FFCECD'><th>作品連結</th><th>姓名</th></tr>";
-	$sql_pop = "SELECT stu.s_id, stu.s_name, works.m_id, works.pop_point FROM works,stu,mission WHERE mission.syear=".$syear." AND works.m_id=mission.m_id AND works.s_id=stu.s_id ORDER BY w_date DESC limit 20";
+	$sql_pop = "SELECT stu.s_id, stu.s_name, works.m_id, works.pop_point FROM works,stu,mission WHERE mission.syear=".$syear." AND works.m_id=mission.m_id AND works.s_id=stu.s_id AND works.t_status=2 ORDER BY w_date DESC limit 20";
 	$result_pop = mysql_query($sql_pop,$pa);
 	if(!$result_pop)die("執行SQL命令失敗_pop1");
 	while($row_pop = mysql_fetch_assoc($result_pop)){
@@ -176,7 +175,7 @@ else{
 	echo "</th>";
 	echo "</tr>";
 	echo "<tr align='center' style='font-size:10; color:#BE00BC; background-color:#FFCDFE'><th>作品連結</th><th>作者</th></tr>";
-	$sql_pop = "SELECT stu.s_id, stu.s_name, works.m_id, works.pop_point FROM works,stu,mission WHERE mission.syear=".$syear." AND works.m_id=mission.m_id AND works.s_id=stu.s_id AND works.pop_point>0 ORDER BY pop_point DESC limit 20";
+	$sql_pop = "SELECT stu.s_id, stu.s_name, works.m_id, works.pop_point FROM works,stu,mission WHERE mission.syear=".$syear." AND works.m_id=mission.m_id AND works.s_id=stu.s_id AND works.t_status=2 AND works.pop_point>0 ORDER BY pop_point DESC limit 20";
 	$result_pop = mysql_query($sql_pop,$pa);
 	if(!$result_pop)die("執行SQL命令失敗_pop1");
 	while($row_pop = mysql_fetch_assoc($result_pop)){
