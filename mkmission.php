@@ -49,8 +49,8 @@ if(isset($_POST["m_name"])){
 		echo "</script>";
 		*/
 		//建立mission紀錄
-		$sql = "INSERT INTO mission(m_name, m_desc, m_grade, syear, t_id, m_spath, m_order,m_date,m_proportion)";
-		$sql .= " VALUES('".$_POST["m_name"]."', '".$_POST["m_desc"]."','".$_POST["m_grade"]."', '".$_POST["syear"]."','".$_SESSION["t_id"]."','./samples/".$desc_file_name."','".$_POST["m_order"]."','".$now_date." ".$now_time2."','".$_POST["m_proportion"]."')";
+		$sql = "INSERT INTO mission(m_name, m_desc, m_grade, syear, t_id, m_spath, m_order, m_date, m_proportion, m_wtype)";
+		$sql .= " VALUES('".$_POST["m_name"]."', '".$_POST["m_desc"]."','".$_POST["m_grade"]."', '".$_POST["syear"]."','".$_SESSION["t_id"]."','./samples/".$desc_file_name."','".$_POST["m_order"]."','".$now_date." ".$now_time2."','".$_POST["m_proportion"]."','".$_POST["m_wtype"]."')";
 		$result = mysql_query($sql,$pa);
 		if($result){
 			//echo $sql;
@@ -234,7 +234,7 @@ function ValidateFloat2(e, pnumber)
 				<td>上傳範例 ：</td><td><input name="up_work" type="file"></td>
 			</tr>
 			<tr>
-				<td>&nbsp;</td>
+				<td>作業檔案格式：</td><td><input type="text" name="m_wtype" value="<?php echo "";?>">　例如PDF檔案：<font color="red">.pdf</font></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>

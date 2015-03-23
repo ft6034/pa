@@ -23,12 +23,13 @@ $m_id = $_GET["mid"];
 require_once("../Connections/pasql.php");
 $db_selected = mysql_select_db($database_pa, $pa);
 if(!$db_selected)die("無法開啟資料庫");	
-$sql = "SELECT m_name,m_spath FROM mission WHERE m_id='".$m_id."'";
+$sql = "SELECT m_name,m_spath,m_wtype FROM mission WHERE m_id='".$m_id."'";
 $result = mysql_query($sql,$pa);
 if(!$result)die("執行SQL命令失敗");
 $row = mysql_fetch_assoc($result);
 $m_name = $row["m_name"];
-$f_type = strrchr($row["m_spath"], ".");
+//$f_type = strrchr($row["m_spath"], ".");
+$f_type = $row["m_wtype"];
 
 //檢查上傳檔案的格式是否正確
 if ( $_FILES["up_work"]["name"] !="" && $f_type != strtolower(strrchr($_FILES["up_work"]["name"], ".")) ){

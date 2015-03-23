@@ -47,7 +47,6 @@ if(isset($_GET["mid"])){
 		$m_date = $row["m_date"];
 		$m_start = $row["m_start"];
 		$m_stop = $row["m_stop"];
-		$m_status = $row["m_status"];
 		//$syear = $row["m_syear"];
 		$m_grade = $row["m_grade"];
 		$m_order = $row["m_order"];

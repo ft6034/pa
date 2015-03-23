@@ -49,7 +49,7 @@ if(isset($_GET["mid"])){
 		$m_date = $row["m_date"];
 		$m_start = $row["m_start"];
 		$m_stop = $row["m_stop"];
-		$m_status = $row["m_status"];
+		$m_wtype = $row["m_wtype"];
 		//$syear = $row["m_syear"];
 		$m_grade = $row["m_grade"];
 		$m_order = $row["m_order"];
@@ -59,7 +59,7 @@ if(isset($_GET["mid"])){
 
 else if(isset($_POST["m_id"])){
 	$status = '2';
-	$sql = "UPDATE mission SET m_name='".$_POST["m_name"]."', m_desc='".$_POST["m_desc"]."', m_grade='".$_POST["m_grade"]."', syear='".$_POST["syear"]."', m_order='".$_POST["m_order"]."', m_proportion='".$_POST["m_proportion"]."' WHERE m_id='".$_POST["m_id"]."'";		
+	$sql = "UPDATE mission SET m_name='".$_POST["m_name"]."', m_desc='".$_POST["m_desc"]."', m_grade='".$_POST["m_grade"]."', syear='".$_POST["syear"]."', m_order='".$_POST["m_order"]."', m_proportion='".$_POST["m_proportion"]."', m_wtype='".$_POST["m_wtype"]."' WHERE m_id='".$_POST["m_id"]."'";		
 	$result = mysql_query($sql,$pa);
 	if(!$result)die("執行SQL命令失敗3");
 	else{			
@@ -238,6 +238,9 @@ function ValidateFloat2(e, pnumber)
 			</tr>
 			<tr>
 				<td>學年學期：</td><td><input type="text" name="syear" value="'.$syear.'"></td>
+			</tr>
+			<tr>
+				<td>作業檔案格式：</td><td><input type="text" name="m_wtype" value="'.$m_wtype.'">　例如PDF檔案：<font color="red">.pdf</font></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
