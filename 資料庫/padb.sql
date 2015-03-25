@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `mission` (
   `m_date` datetime NOT NULL COMMENT '建立日期',
   `m_start` varchar(30) NOT NULL COMMENT '開始時間',
   `m_stop` varchar(30) NOT NULL COMMENT '結束時間',
-  `m_status` varchar(1) NOT NULL COMMENT '任務狀態(0尚未開始,1開放,2結束)',
+  `m_wtpye` varchar(5) NOT NULL COMMENT '作業檔案格式',
   `syear` varchar(4) NOT NULL COMMENT '學年學期',
   `m_grade` varchar(1) NOT NULL COMMENT '年級',
   `t_id` varchar(12) NOT NULL COMMENT '教師序號',
