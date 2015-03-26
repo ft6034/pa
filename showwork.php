@@ -270,25 +270,25 @@ function changeText(objElement) {
 	$w_id = $row["w_id"];
 	
 	echo "<p>";
-	echo "<font color='red'>【";
+	echo "<font color='red'>";
 	switch ($row["t_status"]){
 		case "":
-			echo " 尚未評審 ";
+			echo "【 尚未評審 】";
 		break;
 	
 		case "0":
-			echo " 尚未評審 ";
+			echo "【 尚未評審 】";
 		break;
 					
 		case "1":
-			echo " 已儲存，尚未送出 ";
+			echo "【 已儲存，尚未送出 】";
 		break;
 					
 		case "2":
-			echo " 已送出，評審完成 ";
+			echo "<font color='green'>【 已送出，評審完成 】</font>";
 		break;
 	}
-	echo "】</font>";
+	echo "</font>";
 	echo "</p>";
 	?>
 
