@@ -158,7 +158,12 @@ else{
 			if(isset($_GET["fin"]) && $_GET["fin"]=="done"){
 				echo "<script language='javascript'>";
 				//echo "  alert('完成評審!');";
-				echo "self.location.href='showwork.php?mid=".$_POST["m_id"]."&sid=".$_POST["next_sid"]."';";
+				if($_POST["pg_sid"]!=$_POST["next_sid"]){
+					echo "self.location.href='showwork.php?mid=".$_POST["m_id"]."&sid=".$_POST["next_sid"]."';";
+				}
+				else{
+					echo "self.parent.location='./progressall.php?grade=".$_SESSION["m_grade"]."';";
+				}
 				echo "</script>";
 			}
 			else{
