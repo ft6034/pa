@@ -102,10 +102,17 @@ else{
 					<!-- Scratch project END-->
 				'; //trim 可刪除指定字元
 		}
-		else if (substr($w_desc[$wnum],-3) == "jpg"||substr($w_desc[$wnum],-3) == "png"||substr($w_desc[$wnum],-3) == "bmp"||substr($w_desc[$wnum],-3) == "gif"){
+		elseif (substr($w_desc[$wnum],-3) == "jpg"||substr($w_desc[$wnum],-3) == "png"||substr($w_desc[$wnum],-3) == "bmp"||substr($w_desc[$wnum],-3) == "gif"){
 			echo "<a href=./stu/".$w_desc[$wnum]." rel=\"shadowbox\" target=\"_top\"><img src=./stu/".$w_desc[$wnum]." height=\"387\"></a>";
 		}
-		
+		elseif (substr($w_desc[$wnum],-4) == ".mp4"||substr($w_desc[$wnum],-4) == "webm"||substr($w_desc[$wnum],-4) == ".ogg"){
+			echo '
+				<video width="600" controls>
+				<source src="./stu'.$w_desc[$wnum].'" type="video/'.str_replace('.','',strrchr($w_desc[$wnum], ".")).'">
+				Your browser does not support the video tag.
+				</video>	
+			';
+		}
 		else {
 			echo "<p align=\"center\"><a href=./stu".$w_desc[$wnum]."> [ <font color='green'>下載作品▼</font> ] </a></p>";
 		}
