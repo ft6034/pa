@@ -319,7 +319,7 @@ function changeText(objElement) {
 		elseif (substr($row["w_desc"],-4) == ".mp4"||substr($row["w_desc"],-4) == "webm"||substr($row["w_desc"],-4) == ".ogg"){
 			echo '
 				<video width="600" controls>
-				<source src="'.$row["w_desc"].'" type="video/'.str_replace('.','',strrchr($row["w_desc"], ".")).'">
+				<source src="./stu'.$row["w_desc"].'" type="video/'.str_replace('.','',strrchr($row["w_desc"], ".")).'">
 				Your browser does not support the video tag.
 				</video>	
 			';
